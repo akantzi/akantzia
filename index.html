@@ -1,0 +1,579 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Anna Kantzia — Product Owner</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500&family=SF+Pro+Display:wght@300;400&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --bg: #0a0a0a;
+      --surface: #141414;
+      --surface2: #1c1c1e;
+      --ink: #f5f5f7;
+      --muted: #86868b;
+      --accent: #2997ff;
+      --line: #2c2c2e;
+      --tag-bg: #1c1c1e;
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+
+    body {
+      background: var(--bg);
+      color: var(--ink);
+      font-family: -apple-system, 'Inter', BlinkMacSystemFont, sans-serif;
+      font-weight: 300;
+      line-height: 1.65;
+      min-height: 100vh;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    /* subtle radial glow at top */
+    body::after {
+      content: '';
+      position: fixed;
+      top: -200px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 800px;
+      height: 500px;
+      background: radial-gradient(ellipse, rgba(41,151,255,0.07) 0%, transparent 70%);
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    .page {
+      max-width: 820px;
+      margin: 0 auto;
+      padding: 0 2rem 6rem;
+      position: relative;
+      z-index: 1;
+    }
+
+    /* HEADER */
+    header {
+      padding: 5rem 0 3.5rem;
+      border-bottom: 1px solid var(--line);
+      margin-bottom: 4rem;
+      display: grid;
+      grid-template-columns: 1fr auto;
+      align-items: end;
+      gap: 2rem;
+      opacity: 0;
+      animation: fadeUp 0.8s ease 0.05s forwards;
+    }
+
+    .label {
+      font-size: 0.7rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 1.2rem;
+      font-weight: 400;
+    }
+
+    h1 {
+      font-size: clamp(2.6rem, 7vw, 4.5rem);
+      font-weight: 300;
+      letter-spacing: -0.03em;
+      line-height: 1.05;
+      color: var(--ink);
+    }
+
+    h1 span {
+      color: var(--muted);
+    }
+
+    .tagline {
+      margin-top: 1.2rem;
+      font-size: 0.95rem;
+      color: var(--muted);
+      max-width: 460px;
+      line-height: 1.7;
+    }
+
+    .header-right {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-end;
+      gap: 0.55rem;
+      padding-bottom: 0.25rem;
+    }
+
+    .header-right a {
+      font-size: 0.72rem;
+      letter-spacing: 0.04em;
+      color: var(--muted);
+      text-decoration: none;
+      transition: color 0.2s;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    .header-right a:hover { color: var(--accent); }
+
+    .dot {
+      width: 4px; height: 4px;
+      border-radius: 50%;
+      background: var(--line);
+      display: inline-block;
+      flex-shrink: 0;
+    }
+
+    /* SECTIONS */
+    section {
+      margin-bottom: 4rem;
+      opacity: 0;
+      transform: translateY(16px);
+      animation: fadeUp 0.6s ease forwards;
+    }
+
+    section:nth-child(1) { animation-delay: 0.15s; }
+    section:nth-child(2) { animation-delay: 0.25s; }
+    section:nth-child(3) { animation-delay: 0.35s; }
+    section:nth-child(4) { animation-delay: 0.45s; }
+    section:nth-child(5) { animation-delay: 0.55s; }
+    section:nth-child(6) { animation-delay: 0.65s; }
+    section:nth-child(7) { animation-delay: 0.75s; }
+
+    @keyframes fadeUp {
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    .section-label {
+      font-size: 0.65rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 1.75rem;
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      font-weight: 400;
+    }
+
+    .section-label::after {
+      content: '';
+      flex: 1;
+      height: 1px;
+      background: var(--line);
+    }
+
+    /* ABOUT */
+    .about-text {
+      font-size: 1rem;
+      line-height: 1.8;
+      color: #aeaeb2;
+      max-width: 620px;
+    }
+
+    /* EXPERIENCE */
+    .company-block { margin-bottom: 2.75rem; }
+
+    .company-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      margin-bottom: 1.25rem;
+      padding-bottom: 0.75rem;
+      border-bottom: 1px solid var(--line);
+    }
+
+    .company-name {
+      font-size: 1rem;
+      font-weight: 500;
+      color: var(--ink);
+      letter-spacing: -0.01em;
+    }
+
+    .company-meta {
+      font-size: 0.68rem;
+      color: var(--muted);
+      letter-spacing: 0.04em;
+      text-align: right;
+    }
+
+    .role {
+      margin-bottom: 1.5rem;
+      padding-left: 1rem;
+      border-left: 1px solid var(--line);
+      transition: border-color 0.25s;
+    }
+
+    .role:hover { border-left-color: var(--accent); }
+
+    .role-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      margin-bottom: 0.6rem;
+      flex-wrap: wrap;
+      gap: 0.25rem;
+    }
+
+    .role-title {
+      font-size: 0.9rem;
+      font-weight: 500;
+      color: var(--ink);
+    }
+
+    .role-date {
+      font-size: 0.65rem;
+      color: var(--muted);
+      letter-spacing: 0.05em;
+      white-space: nowrap;
+    }
+
+    .role ul { list-style: none; }
+
+    .role ul li {
+      font-size: 0.85rem;
+      color: var(--muted);
+      line-height: 1.65;
+      margin-bottom: 0.3rem;
+      padding-left: 1rem;
+      position: relative;
+    }
+
+    .role ul li::before {
+      content: '·';
+      position: absolute;
+      left: 0;
+      color: var(--line);
+    }
+
+    /* SIMPLE ROWS */
+    .simple-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      padding: 1rem 0;
+      border-bottom: 1px solid var(--line);
+      gap: 1rem;
+    }
+
+    .simple-row:first-of-type { border-top: 1px solid var(--line); }
+
+    .simple-row-left strong {
+      font-weight: 500;
+      font-size: 0.9rem;
+      display: block;
+      color: var(--ink);
+    }
+
+    .simple-row-left span {
+      font-size: 0.8rem;
+      color: var(--muted);
+    }
+
+    .simple-row-right {
+      font-size: 0.65rem;
+      color: var(--muted);
+      letter-spacing: 0.05em;
+      text-align: right;
+      white-space: nowrap;
+    }
+
+    /* SKILLS */
+    .skills-grid {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.45rem;
+    }
+
+    .skill-tag {
+      background: var(--tag-bg);
+      border: 1px solid var(--line);
+      border-radius: 980px;
+      padding: 0.28rem 0.85rem;
+      font-size: 0.72rem;
+      color: #aeaeb2;
+      letter-spacing: 0.02em;
+      transition: all 0.2s;
+      cursor: default;
+    }
+
+    .skill-tag:hover {
+      background: rgba(41,151,255,0.12);
+      border-color: rgba(41,151,255,0.4);
+      color: var(--accent);
+    }
+
+    /* LANGUAGES */
+    .lang-row { display: flex; gap: 2.5rem; flex-wrap: wrap; }
+
+    .lang-item strong {
+      display: block;
+      font-weight: 500;
+      font-size: 0.9rem;
+      color: var(--ink);
+    }
+
+    .lang-item span {
+      font-size: 0.75rem;
+      color: var(--muted);
+    }
+
+    /* INTERESTS */
+    .interests-text {
+      font-size: 0.88rem;
+      color: var(--muted);
+      line-height: 1.7;
+    }
+
+    .interests-text strong {
+      color: #aeaeb2;
+      font-weight: 500;
+    }
+
+    /* FOOTER */
+    footer {
+      margin-top: 5rem;
+      padding-top: 2rem;
+      border-top: 1px solid var(--line);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    footer p {
+      font-size: 0.65rem;
+      color: var(--muted);
+      letter-spacing: 0.08em;
+    }
+
+    footer a {
+      color: var(--accent);
+      text-decoration: none;
+    }
+
+    @media (max-width: 600px) {
+      header { grid-template-columns: 1fr; }
+      .header-right { align-items: flex-start; flex-direction: row; flex-wrap: wrap; }
+      .company-header { flex-direction: column; gap: 0.2rem; }
+      .company-meta { text-align: left; }
+      footer { flex-direction: column; gap: 0.5rem; text-align: center; }
+    }
+  </style>
+</head>
+<body>
+<div class="page">
+
+  <header>
+    <div class="header-left">
+      <p class="label">Product Owner · Fintech · Cyprus</p>
+      <h1>Anna <span>Kantzia</span></h1>
+      <p class="tagline">Product Owner with a background in Quality Assurance, focused on improving complex systems and building cleaner, more reliable product experiences.</p>
+    </div>
+    <div class="header-right">
+      <a href="https://www.linkedin.com/in/anna-kantzia" target="_blank">
+        <span class="dot"></span> linkedin.com/in/anna-kantzia
+      </a>
+      <a href="#">
+        <span class="dot"></span> Limassol, Cyprus
+      </a>
+    </div>
+  </header>
+
+  <main>
+
+    <!-- EXPERIENCE -->
+    <section>
+      <p class="section-label">Experience</p>
+
+      <div class="company-block">
+        <div class="company-header">
+          <span class="company-name">Tickmill</span>
+          <span class="company-meta">Limassol, Cyprus · Hybrid · 3 yrs 6 mos</span>
+        </div>
+
+        <div class="role">
+          <div class="role-header">
+            <span class="role-title">Product Owner</span>
+            <span class="role-date">Jan 2026 – Present</span>
+          </div>
+          <ul>
+            <li>Own and drive the Funding domain roadmap, defining priorities to improve client experience, operational efficiency, and product performance.</li>
+            <li>Lead end-to-end delivery of product initiatives, ensuring alignment and smooth execution from planning through release.</li>
+          </ul>
+        </div>
+
+        <div class="role">
+          <div class="role-header">
+            <span class="role-title">QA Lead</span>
+            <span class="role-date">Aug 2023 – Mar 2026</span>
+          </div>
+          <ul>
+            <li>Pioneered an in-house QA suite combining automation, load testing, AI/ML insights, and LLM-powered tools — streamlining workflows and accelerating testing efficiency.</li>
+            <li>Led release progress to ensure timely, high-quality deliverables.</li>
+            <li>Mentored team members, fostering skill growth and continuous improvement.</li>
+            <li>Defined test metrics and reported on release quality and health.</li>
+          </ul>
+        </div>
+
+        <div class="role">
+          <div class="role-header">
+            <span class="role-title">Senior QA Engineer</span>
+            <span class="role-date">Dec 2022 – Jul 2023</span>
+          </div>
+          <ul>
+            <li>Led planning and execution of manual test cases for API and UI coverage.</li>
+            <li>Initiated mobile app test automation, laying the foundation for scalable frameworks.</li>
+            <li>Proposed technical and business improvements that boosted system performance and usability.</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="company-block">
+        <div class="company-header">
+          <span class="company-name">Lendwise</span>
+          <span class="company-meta">Limassol, Cyprus · On-site · 2 yrs 11 mos</span>
+        </div>
+
+        <div class="role">
+          <div class="role-header">
+            <span class="role-title">Product Manager</span>
+            <span class="role-date">Aug 2021 – Nov 2022</span>
+          </div>
+          <ul>
+            <li>Owned product improvements for a two-sided P2P lending platform, covering borrower journeys, investor tooling, and operational back-office systems.</li>
+            <li>Shaped and optimized auto-investment strategies to balance investor returns, liquidity, and risk exposure.</li>
+            <li>Simplified borrower loan flows to improve conversion.</li>
+            <li>Partnered with engineering and business stakeholders to deliver data-driven product enhancements.</li>
+          </ul>
+        </div>
+
+        <div class="role">
+          <div class="role-header">
+            <span class="role-title">Senior QA Automation Engineer</span>
+            <span class="role-date">Jan 2020 – Oct 2021</span>
+          </div>
+          <ul>
+            <li>Initiated and established all QA processes from scratch, defining strategy, workflows, and quality standards.</li>
+            <li>Built a scalable automation framework using Python, pytest, and Selenium.</li>
+            <li>Configured CI/CD pipelines to run automated API/UI tests across devices, browsers, and platforms.</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="company-block">
+        <div class="company-header">
+          <span class="company-name">Amdocs</span>
+          <span class="company-meta">Limassol, Cyprus · On-site · 5 yrs</span>
+        </div>
+
+        <div class="role">
+          <div class="role-header">
+            <span class="role-title">Business Analyst</span>
+            <span class="role-date">May 2019 – Dec 2019</span>
+          </div>
+          <ul>
+            <li>Led as Product Owner in the BI & Data Warehousing team, driving scoping, planning, and solution delivery.</li>
+            <li>Designed dynamic dashboards in Tableau and Power BI to enhance data insights.</li>
+            <li>Engaged stakeholders to gather and analyze requirements, aligning business goals with system capabilities.</li>
+          </ul>
+        </div>
+
+        <div class="role">
+          <div class="role-header">
+            <span class="role-title">Software Test Engineer</span>
+            <span class="role-date">Jan 2015 – Apr 2019</span>
+          </div>
+          <ul>
+            <li>Led test planning and execution for releases, ensuring alignment with business requirements.</li>
+            <li>Developed and maintained automated API/UI scripts integrated into CI/CD pipelines.</li>
+            <li>Mentored new team members and supported production deployments and customer UAT.</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- EDUCATION -->
+    <section>
+      <p class="section-label">Education</p>
+      <div class="simple-row">
+        <div class="simple-row-left">
+          <strong>University of Cyprus</strong>
+          <span>Bachelor's Degree, Computer Science</span>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- CERTIFICATIONS -->
+    <section>
+      <p class="section-label">Certifications</p>
+      <div class="simple-row">
+        <div class="simple-row-left">
+          <strong>Registered Product Owner</strong>
+          <span>Scrum Inc. · ID #RPO-7824334</span>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- SKILLS -->
+    <section>
+      <p class="section-label">Skills</p>
+      <div class="skills-grid">
+        <span class="skill-tag">Product Strategy</span>
+        <span class="skill-tag">Roadmap Planning</span>
+        <span class="skill-tag">Backlog Management</span>
+        <span class="skill-tag">Stakeholder Management</span>
+        <span class="skill-tag">Agile / Scrum</span>
+        <span class="skill-tag">User Story Mapping</span>
+        <span class="skill-tag">OKRs & KPIs</span>
+        <span class="skill-tag">Discovery & Delivery</span>
+        <span class="skill-tag">Cross-functional Leadership</span>
+        <span class="skill-tag">Data-driven Decision Making</span>
+        <span class="skill-tag">FinTech Domain</span>
+        <span class="skill-tag">P2P Lending</span>
+        <span class="skill-tag">Technical Background (QA/Dev)</span>
+        <span class="skill-tag">AI / LLM Tooling</span>
+        <span class="skill-tag">Tableau · Power BI</span>
+      </div>
+    </section>
+
+    <!-- LANGUAGES -->
+    <section>
+      <p class="section-label">Languages</p>
+      <div class="lang-row">
+        <div class="lang-item">
+          <strong>English</strong>
+          <span>Native / Bilingual</span>
+        </div>
+        <div class="lang-item">
+          <strong>Greek</strong>
+          <span>Native / Bilingual</span>
+        </div>
+        <div class="lang-item">
+          <strong>Swedish</strong>
+          <span>Basic</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- INTERESTS -->
+    <section>
+      <p class="section-label">Interests</p>
+      <p class="interests-text">
+        <strong>Home automation</strong> — building and tinkering with smart home systems and custom dashboards using Home Assistant.
+        Outside of tech, you'll find me deep in an MMORPG, at the gym, or with my dog.
+      </p>
+    </section>
+
+  </main>
+
+  <footer>
+    <p>Anna Kantzia · Limassol, Cyprus · 2026</p>
+    <p><a href="https://www.linkedin.com/in/anna-kantzia" target="_blank">LinkedIn</a></p>
+  </footer>
+
+</div>
+</body>
+</html>
