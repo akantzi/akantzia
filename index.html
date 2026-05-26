@@ -32,7 +32,6 @@
       -webkit-font-smoothing: antialiased;
     }
 
-    /* subtle radial glow at top */
     body::after {
       content: '';
       position: fixed;
@@ -54,7 +53,6 @@
       z-index: 1;
     }
 
-    /* HEADER */
     header {
       padding: 5rem 0 3.5rem;
       border-bottom: 1px solid var(--line);
@@ -84,9 +82,7 @@
       color: var(--ink);
     }
 
-    h1 span {
-      color: var(--muted);
-    }
+    h1 span { color: var(--muted); }
 
     .tagline {
       margin-top: 1.2rem;
@@ -125,7 +121,6 @@
       flex-shrink: 0;
     }
 
-    /* SECTIONS */
     section {
       margin-bottom: 4rem;
       opacity: 0;
@@ -164,15 +159,6 @@
       background: var(--line);
     }
 
-    /* ABOUT */
-    .about-text {
-      font-size: 1rem;
-      line-height: 1.8;
-      color: #c7c7cc;
-      max-width: 620px;
-    }
-
-    /* EXPERIENCE */
     .company-block { margin-bottom: 2.75rem; }
 
     .company-header {
@@ -247,7 +233,6 @@
       color: var(--line);
     }
 
-    /* SIMPLE ROWS */
     .simple-row {
       display: flex;
       justify-content: space-between;
@@ -271,15 +256,6 @@
       color: var(--muted);
     }
 
-    .simple-row-right {
-      font-size: 0.65rem;
-      color: var(--muted);
-      letter-spacing: 0.05em;
-      text-align: right;
-      white-space: nowrap;
-    }
-
-    /* SKILLS */
     .skills-grid {
       display: flex;
       flex-wrap: wrap;
@@ -304,7 +280,6 @@
       color: var(--accent);
     }
 
-    /* LANGUAGES */
     .lang-row { display: flex; gap: 2.5rem; flex-wrap: wrap; }
 
     .lang-item strong {
@@ -319,19 +294,12 @@
       color: var(--muted);
     }
 
-    /* INTERESTS */
     .interests-text {
       font-size: 0.88rem;
       color: var(--muted);
       line-height: 1.7;
     }
 
-    .interests-text strong {
-      color: #c7c7cc;
-      font-weight: 500;
-    }
-
-    /* FOOTER */
     footer {
       margin-top: 5rem;
       padding-top: 2rem;
@@ -382,7 +350,6 @@
 
   <main>
 
-    <!-- EXPERIENCE -->
     <section>
       <p class="section-label">Experience</p>
 
@@ -493,7 +460,6 @@
       </div>
     </section>
 
-    <!-- EDUCATION -->
     <section>
       <p class="section-label">Education</p>
       <div class="simple-row">
@@ -501,11 +467,9 @@
           <strong>University of Cyprus</strong>
           <span>Bachelor's Degree, Computer Science</span>
         </div>
-
       </div>
     </section>
 
-    <!-- CERTIFICATIONS -->
     <section>
       <p class="section-label">Certifications</p>
       <div class="simple-row">
@@ -513,33 +477,35 @@
           <strong>Registered Product Owner</strong>
           <span>Scrum Inc. · ID #RPO-7824334</span>
         </div>
-
       </div>
     </section>
 
-    <!-- SKILLS -->
     <section>
       <p class="section-label">Skills</p>
       <div class="skills-grid">
         <span class="skill-tag">Product Strategy</span>
         <span class="skill-tag">Roadmap Planning</span>
-        <span class="skill-tag">Backlog Management</span>
         <span class="skill-tag">Stakeholder Management</span>
-        <span class="skill-tag">Agile/Scrum</span>
-        <span class="skill-tag">User Story Mapping</span>
+        <span class="skill-tag">Agile / Scrum</span>
         <span class="skill-tag">OKRs & KPIs</span>
-        <span class="skill-tag">Discovery & Delivery</span>
+        <span class="skill-tag">Product Discovery</span>
+        <span class="skill-tag">Delivery Management</span>
+        <span class="skill-tag">Release Management</span>
         <span class="skill-tag">Cross-functional Leadership</span>
         <span class="skill-tag">Data-driven Decision Making</span>
         <span class="skill-tag">FinTech Domain</span>
+        <span class="skill-tag">Payment Infrastructure</span>
+        <span class="skill-tag">Client Funding Flows</span>
+        <span class="skill-tag">PSP Management</span>
+        <span class="skill-tag">Risk & Fraud Detection</span>
         <span class="skill-tag">P2P Lending</span>
-        <span class="skill-tag">Technical Background (QA/Dev)</span>
-        <span class="skill-tag">AI/LLM Tooling</span>
-        <span class="skill-tag">Tableau · Power BI</span>
+        <span class="skill-tag">Trading Platforms</span>
+        <span class="skill-tag">ML Product Integration</span>
+        <span class="skill-tag">Workflow Automation</span>
+        <span class="skill-tag">AI / LLM Tooling</span>
       </div>
     </section>
 
-    <!-- LANGUAGES -->
     <section>
       <p class="section-label">Languages</p>
       <div class="lang-row">
@@ -558,7 +524,6 @@
       </div>
     </section>
 
-    <!-- INTERESTS -->
     <section>
       <p class="section-label">Interests</p>
       <p class="interests-text">
